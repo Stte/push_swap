@@ -5,7 +5,7 @@ O			= obj/
 I			= inc/
 LIBFT_I		= libft/inc
 
-CC			= cc
+CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -I$I -I$(LIBFT_I) -g
 
 AR			= ar
@@ -49,6 +49,7 @@ cleanobjdir: $O
 clean: cleanobjdir
 
 fclean: clean
+	# make fclean -C libft
 	$(RM) $(NAME)
 
 re:
