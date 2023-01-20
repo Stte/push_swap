@@ -12,7 +12,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/push_swap.c
+$S/push_swap.c	$S/get_args.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
