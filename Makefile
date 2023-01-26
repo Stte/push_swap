@@ -6,13 +6,15 @@ I			= inc/
 LIBFT_I		= libft/inc
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -I$I -I$(LIBFT_I) -g
+CFLAGS		= -Wall -Werror -Wextra -g
+INCLUDES	= -I$I -I$(LIBFT_I)
+LIBRARIES	= -L./libft -lft
 
 AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/push_swap.c	$S/get_args.c
+$S/push_swap.c	$S/get_args.c	$S/validity_checks.c $S/ft_dlstnew.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
@@ -20,6 +22,7 @@ RMDIR		= /bin/rm -rf
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_FLAGS	= -g
 
 .PHONY: all clean fclean re
 
@@ -28,20 +31,17 @@ all: $(NAME)
 $O:
 	@mkdir $@
 
-$(OBJ): | $O
+# $(OBJ): | $O
 
-$(OBJ): $O%.o: $S%
-	$(CC) $(CFLAGS) $< -o $@
+# $(OBJ): $O%.o: $S%
+# 	$(CC) $(CFLAGS) $< -o $@
 
 # $(NAME): $(OBJ)
-$(NAME):
-	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT) libft.a
-	$(CC) $(CFLAGS) -L. -lft $(SRC) -o push_swap
+$(NAME): $(LIBFT)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBRARIES) $(SRC) -o $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
-	cp $(LIBFT) $(NAME)
+	make FLAGS=$(LIBFT_FLAGS) -C $(LIBFT_DIR)
 
 cleanobjdir: $O
 	$(RMDIR) $O
@@ -49,9 +49,15 @@ cleanobjdir: $O
 clean: cleanobjdir
 
 fclean: clean
-	# make fclean -C libft
+	make fclean -C libft
 	$(RM) $(NAME)
 
 re:
 	@make fclean
 	@make all
+
+run_test: fclean $(LIBFT)
+	make PUSH_SWAP="$(SRC)" -C ./test
+
+playground: fclean $(LIBFT)
+	make PUSH_SWAP="$(SRC)" playground -C ./test

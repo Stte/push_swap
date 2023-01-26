@@ -56,3 +56,4 @@ dkms.conf
 .vscode
 push_swap
 checker_*
+run_*
