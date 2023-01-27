@@ -14,7 +14,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/push_swap.c	$S/get_args.c	$S/validity_checks.c $S/ft_dlstnew.c
+$S/push_swap.c	$S/get_args.c	$S/validity_checks.c	$S/ft_btree.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
@@ -56,8 +56,8 @@ re:
 	@make fclean
 	@make all
 
-run_test: fclean $(LIBFT)
+run_test: $(LIBFT)
 	make PUSH_SWAP="$(SRC)" -C ./test
 
-playground: fclean $(LIBFT)
+playground: $(LIBFT)
 	make PUSH_SWAP="$(SRC)" playground -C ./test

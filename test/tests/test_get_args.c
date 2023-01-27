@@ -1,12 +1,6 @@
-#include "unity/unity.h"
+#include "unity.h"
 #include "push_swap.h"
 #include "libft.h"
-
-void setUp(void) {
-}
-
-void tearDown(void) {
-}
 
 void test_get_args_0(void)
 {
@@ -90,7 +84,7 @@ void test_get_args_5(void)
 }
 
 
-int main(void)
+int test_get_args(void)
 {
 	UNITY_BEGIN();
 	RUN_TEST(test_get_args_0);

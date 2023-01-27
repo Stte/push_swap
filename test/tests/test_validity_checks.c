@@ -1,12 +1,6 @@
-#include "unity/unity.h"
-#include "../inc/push_swap.h"
-#include "../libft/inc/libft.h"
-
-void setUp(void) {
-}
-
-void tearDown(void) {
-}
+#include "unity.h"
+#include "push_swap.h"
+#include "libft.h"
 
 void test_is_unique_num_0(void)
 {
@@ -33,7 +27,7 @@ void test_is_valid_num_0(void)
 }
 
 
-int main(void)
+int test_validity(void)
 {
 	UNITY_BEGIN();
 	RUN_TEST(test_is_unique_num_0);

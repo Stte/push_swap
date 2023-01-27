@@ -3,10 +3,18 @@
 
 int	main(void)
 {
-	t_dlist *test;
-	int i[] = {1, 2, 3};
+	t_btree	*test;
+	t_vec	vec;
+	int		arr[] = {1, 2, 3};
 
-	test = ft_dlstnew(i);
+	vec_from(&vec, arr, 3, sizeof(int));
+
+	test = ft_btree(vec.memory);
+
+	int *i = test->content;
+
+	if (i)
+		;
 
 	return (0);
 }
