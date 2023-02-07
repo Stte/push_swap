@@ -186,17 +186,3 @@ int test_stack(void)
 	RUN_TEST(test_ft_stack_reverse_rotate_0);
 	return UNITY_END();
 }
-
-
-// swap
-	// swap_top()
-
-// push
-	// stack2 = stack_prepend(stack2, stack1)
-	// stack1 = stack_del_top(stack1)
-
-// rotate
-	// stack1 = stack_rotate(stack1)
-
-// reverse_rotate
-	// stack1 = stack_reverse_rotate(stack1)
