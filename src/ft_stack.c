@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree.c                                         :+:      :+:    :+:   */
+/*   ft_stack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:23 by tspoof            #+#    #+#             */
-/*   Updated: 2023/01/26 17:46:30 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/06 17:48:58 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-// ft_btree_insert
-
-// ft_btree_destroy
-
-// ft_btree_search
-
-t_btree	*ft_btree(void *content)
+t_stack	*ft_stack_prepend(t_stack *head, t_stack *node)
 {
-	t_btree	*btree;
+	head->prev = node;
+	node->next = head;
+	return (node);
+}
 
-	btree = (t_btree *)malloc(sizeof(t_btree));
-	if (!btree)
+void	ft_stack_append(t_stack *head, t_stack *node)
+{
+	while (head->next != NULL)
+		head = head->next;
+	head->next = node;
+	node->prev = head;
+}
+
+t_stack	*ft_stack(int content)
+{
+	t_stack	*stack;
+
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
 		return (NULL);
-	btree->content = content;
-	btree->next = NULL;
-	btree->prev = NULL;
-	return (btree);
+	stack->content = content;
+	stack->next = NULL;
+	stack->prev = NULL;
+	return (stack);
 }

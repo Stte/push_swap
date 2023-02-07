@@ -10,6 +10,6 @@ int main(void)
 {
 	test_validity();
 	test_get_args();
-	test_btree();
+	test_stack();
 	return (0);
 }

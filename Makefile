@@ -14,7 +14,7 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/push_swap.c	$S/get_args.c	$S/validity_checks.c	$S/ft_btree.c
+$S/push_swap.c	$S/get_args.c	$S/validity_checks.c	$S/ft_stack.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
