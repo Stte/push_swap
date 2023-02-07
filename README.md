@@ -1,7 +1,8 @@
 # push_swap
 
 - Sort data from lowest to highest
-- Have two stacks
+- Use only allowed operations
+- Two stacks
 - Do the least amount of moves
 
 At the beginning:
