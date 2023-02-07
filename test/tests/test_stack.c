@@ -34,12 +34,12 @@ void test_ft_stack_append_0(void)
 	stack2 = ft_stack(2);
 	stack3 = ft_stack(3);
 
-	// stack <-> stack2 -> NULL
+	// NULL <- stack <-> stack2 -> NULL
 	ft_stack_append(stack, stack2);
 	TEST_ASSERT_TRUE_MESSAGE(stack->next == stack2, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stack->next->next == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(stack->next->prev == stack, "#3");
-	// stack <-> stack2 <-> stack3 -> NULL
+	// NULL <- stack <-> stack2 <-> stack3 -> NULL
 	ft_stack_append(stack, stack3);
 	TEST_ASSERT_TRUE_MESSAGE(stack->next == stack2, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stack->next->next == stack3, "#2");
@@ -58,19 +58,19 @@ void test_ft_stack_prepend_0(void)
 	stack3 = ft_stack(3);
 	head = stack;
 
-	// stack2 <-> stack -> NULL
+	// NULL <- stack2 <-> stack -> NULL
 	head = ft_stack_prepend(head, stack2);
 	TEST_ASSERT_TRUE_MESSAGE(head->next == stack, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(head->next->next == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack2, "#3");
-	// stack3 <-> stack2 <-> stack -> NULL
+	// NULL <- stack3 <-> stack2 <-> stack -> NULL
 	head = ft_stack_prepend(head, stack3);
 	TEST_ASSERT_TRUE_MESSAGE(head->next == stack2, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack2, "#3");
 }
 
-void test_ft_stack_delete_0(void)
+void test_ft_stack_del_top_0(void)
 {
 	t_stack	*stack;
 	t_stack	*stack2;
@@ -82,16 +82,18 @@ void test_ft_stack_delete_0(void)
 	stack3 = ft_stack(3);
 	head = stack;
 
-	// stack2 <-> stack -> NULL
-	head = ft_stack_delete(head, stack2);
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack2, "#3");
-	// stack3 <-> stack2 <-> stack -> NULL
-	head = ft_stack_delete(head, stack3);
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack2, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack2, "#3");
+	ft_stack_append(head, stack2);
+	ft_stack_append(head, stack3);
+	// NULL <- stack <-> stack2 <-> stack3 -> NULL
+
+	head = ft_stack_del_top(head);
+	// NULL <- stack2 <-> stack3 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(head->next == stack3, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#2");
+	head = ft_stack_del_top(head);
+	// NULL <- stack3 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(head->next == NULL, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#4");
 }
 
 // delete top
@@ -103,5 +105,6 @@ int test_stack(void)
 	RUN_TEST(test_ft_stack_0);
 	RUN_TEST(test_ft_stack_append_0);
 	RUN_TEST(test_ft_stack_prepend_0);
+	RUN_TEST(test_ft_stack_del_top_0);
 	return UNITY_END();
 }
