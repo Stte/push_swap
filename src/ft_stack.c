@@ -6,12 +6,26 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:23 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/07 13:30:32 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/07 14:27:23 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+
+t_stack	*ft_stack_swap_top(t_stack *head)
+{
+	// t_stack	*tmp;
+
+	// tmp = head;
+	head->prev = head->next;
+	head->next = head->prev->next;
+	head->next->prev = head;
+	head = head->prev;
+	head->next = head->prev;
+	head->prev = NULL;
+	return (head);
+}
 
 t_stack	*ft_stack_del_top(t_stack *head)
 {

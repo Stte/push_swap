@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/07 13:28:02 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/07 14:15:39 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ t_stack	*ft_stack(int content);
 void	ft_stack_append(t_stack *head, t_stack *node);
 t_stack	*ft_stack_prepend(t_stack *head, t_stack *node);
 t_stack	*ft_stack_del_top(t_stack *head);
+t_stack	*ft_stack_swap_top(t_stack *head);
 
 #endif
