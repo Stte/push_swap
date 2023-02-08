@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_additives.c                               :+:      :+:    :+:   */
+/*   ft_stack_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:24:35 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/07 18:24:44 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:22:16 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-t_stack	*ft_stack_del_top(t_stack *head)
+void	ft_stack_push(t_stack **dest, t_stack **source)
 {
-	head = head->next;
-	head->prev = NULL;
-	return (head);
-}
+	t_stack	*src_next;
 
-t_stack	*ft_stack_prepend(t_stack *head, t_stack *node)
-{
-	head->prev = node;
-	node->next = head;
-	return (node);
-}
-
-void	ft_stack_append(t_stack *head, t_stack *node)
-{
-	while (head->next != NULL)
-		head = head->next;
-	head->next = node;
-	node->prev = head;
+	if (!source || !*source)
+		return ;
+	src_next = (*source)->next;
+	if (!dest || !*dest)
+	{
+		*dest = *source;
+		(*dest)->next = NULL;
+	}
+	else
+	{
+		(*dest)->prev = *source;
+		(*source)->next = *dest;
+		*dest = *source;
+	}
+	(*dest)->prev = NULL;
+	*source = src_next;
+	if (*source)
+		(*source)->prev = NULL;
 }

@@ -3,18 +3,22 @@
 
 int	main(void)
 {
-	t_btree	*test;
-	t_vec	vec;
-	int		arr[] = {1, 2, 3};
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+	t_stack *stackA;
+	t_stack *stackB;
 
-	vec_from(&vec, arr, 3, sizeof(int));
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = node1;
+	stackB = NULL;
 
-	test = ft_btree(vec.memory);
-
-	int *i = test->content;
-
-	if (i)
-		;
+	ft_stack_append(stackA, node2);
+	ft_stack_append(stackA, node3);
+	ft_stack_push(&stackB, &stackA);
+	ft_stack_push(&stackA, &stackB);
 
 	return (0);
 }

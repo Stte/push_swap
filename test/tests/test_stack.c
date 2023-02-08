@@ -2,176 +2,179 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void test_ft_stack_0(void)
+void free_stack(t_stack *stack)
 {
-	t_stack *stack;
+	t_stack	*tmp;
 
-	stack = ft_stack(42);
-	TEST_ASSERT_TRUE_MESSAGE(stack != NULL, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(stack->content == 42, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next == NULL, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(stack->prev == NULL, "#4");
+	while (stack->next != NULL)
+	{
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
+	}
+	free(stack);
 }
 
-void test_ft_stack_1(void)
+void test_ft_stack_0(void)
 {
-	t_stack	*stack;
+	t_stack *node1;
 
-	stack = ft_stack(42);
-	TEST_ASSERT_TRUE_MESSAGE(stack != NULL, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(stack->content == 42, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next == NULL, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(stack->prev == NULL, "#4");
+	node1 = ft_stack(42);
+	TEST_ASSERT_TRUE_MESSAGE(node1 != NULL, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(node1->content == 42, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(node1->next == NULL, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(node1->prev == NULL, "#4");
+
+	free_stack(node1);
 }
 
 void test_ft_stack_append_0(void)
 {
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
 
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
 
-	// NULL <- stack <-> stack2 -> NULL
-	ft_stack_append(stack, stack2);
-	TEST_ASSERT_TRUE_MESSAGE(stack->next == stack2, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next->next == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next->prev == stack, "#3");
-	// NULL <- stack <-> stack2 <-> stack3 -> NULL
-	ft_stack_append(stack, stack3);
-	TEST_ASSERT_TRUE_MESSAGE(stack->next == stack2, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next->next == stack3, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(stack->next->next->prev == stack2, "#3");
+	// NULL <- node1 <-> node2 -> NULL
+	ft_stack_append(node1, node2);
+	TEST_ASSERT_TRUE_MESSAGE(node1->next == node2, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(node1->next->next == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(node1->next->prev == node1, "#3");
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
+	ft_stack_append(node1, node3);
+	TEST_ASSERT_TRUE_MESSAGE(node1->next == node2, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(node1->next->next == node3, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(node1->next->next->prev == node2, "#3");
+
+	free_stack(node1);
 }
 
-void test_ft_stack_prepend_0(void)
+void test_ft_stack_push_0(void)
 {
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
-	t_stack *head;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+	t_stack *stackA;
+	t_stack *stackB;
 
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
-	head = stack;
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = node1;
+	stackB = NULL;
 
-	// NULL <- stack2 <-> stack -> NULL
-	head = ft_stack_prepend(head, stack2);
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack2, "#3");
-	// NULL <- stack3 <-> stack2 <-> stack -> NULL
-	head = ft_stack_prepend(head, stack3);
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack2, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack2, "#3");
+	ft_stack_append(stackA, node2);
+	ft_stack_append(stackA, node3);
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
+	// NULL
+
+	ft_stack_push(&stackB, &stackA);
+	// NULL <- node2 <-> node3 -> NULL
+	// NULL <- node1 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node3, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next == NULL, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->prev == node2, "#4");
+	TEST_ASSERT_TRUE_MESSAGE(stackB->next == NULL, "#5");
+	TEST_ASSERT_TRUE_MESSAGE(stackB->prev == NULL, "#6");
+	ft_stack_push(&stackA, &stackB);
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
+	// NULL
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node2, "#7");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#8");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next == node3, "#9");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->prev == node1, "#10");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->next == NULL, "#11");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->prev == node2, "#12");
+
+	free_stack(stackA);
 }
 
-void test_ft_stack_del_top_0(void)
+void test_ft_stack_swap_0(void)
 {
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
-	t_stack *head;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+	t_stack *stackA;
 
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
-	head = stack;
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = node1;
 
-	ft_stack_append(head, stack2);
-	ft_stack_append(head, stack3);
-	// NULL <- stack <-> stack2 <-> stack3 -> NULL
+	ft_stack_append(stackA, node2);
+	ft_stack_append(stackA, node3);
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	head = ft_stack_del_top(head);
-	// NULL <- stack2 <-> stack3 -> NULL
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack3, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#2");
-	head = ft_stack_del_top(head);
-	// NULL <- stack3 -> NULL
-	TEST_ASSERT_TRUE_MESSAGE(head->next == NULL, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#4");
-}
+	stackA = ft_stack_swap(stackA);
+	// NULL <- node2 <-> node1 <-> node3 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node1, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next == node3, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->prev == node2, "#4");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->next == NULL, "#5");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->prev == node1, "#6");
 
-void test_ft_stack_swap_top_0(void)
-{
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
-	t_stack *head;
-
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
-	head = stack;
-
-	ft_stack_append(head, stack2);
-	ft_stack_append(head, stack3);
-	// NULL <- stack <-> stack2 <-> stack3 -> NULL
-
-	head = ft_stack_swap_top(head);
-	// NULL <- stack2 <-> stack <-> stack3 -> NULL
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack3, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack2, "#4");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->next == NULL, "#5");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack, "#6");
+	free_stack(stackA);
 }
 
 void test_ft_stack_rotate_0(void)
 {
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
-	t_stack *head;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+	t_stack *stackA;
 
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
-	head = stack;
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = node1;
 
-	ft_stack_append(head, stack2);
-	ft_stack_append(head, stack3);
-	// NULL <- stack <-> stack2 <-> stack3 -> NULL
+	ft_stack_append(stackA, node2);
+	ft_stack_append(stackA, node3);
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	head = ft_stack_rotate(head);
-	// NULL <- stack2 <-> stack3 <-> stack -> NULL
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack3, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack2, "#4");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->next == NULL, "#5");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack3, "#6");
+	stackA = ft_stack_rotate(stackA);
+	// NULL <- node2 <-> node3 <-> node1 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node3, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next == node1, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->prev == node2, "#4");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->next == NULL, "#5");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->prev == node3, "#6");
+
+	free_stack(stackA);
 }
 
 void test_ft_stack_reverse_rotate_0(void)
 {
-	t_stack	*stack;
-	t_stack	*stack2;
-	t_stack	*stack3;
-	t_stack *head;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+	t_stack *stackA;
 
-	stack = ft_stack(1);
-	stack2 = ft_stack(2);
-	stack3 = ft_stack(3);
-	head = stack;
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = node1;
 
-	ft_stack_append(head, stack2);
-	ft_stack_append(head, stack3);
-	// NULL <- stack <-> stack2 <-> stack3 -> NULL
+	ft_stack_append(stackA, node2);
+	ft_stack_append(stackA, node3);
+	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	head = ft_stack_reverse_rotate(head);
-	// NULL <- stack3 <-> stack <-> stack2 -> NULL
-	TEST_ASSERT_TRUE_MESSAGE(head->next == stack, "#1");
-	TEST_ASSERT_TRUE_MESSAGE(head->prev == NULL, "#2");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next == stack2, "#3");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->prev == stack3, "#4");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->next == NULL, "#5");
-	TEST_ASSERT_TRUE_MESSAGE(head->next->next->prev == stack, "#6");
+	stackA = ft_stack_reverse_rotate(stackA);
+	// NULL <- node3 <-> node1 <-> node2 -> NULL
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node1, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next == node2, "#3");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->prev == node3, "#4");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->next == NULL, "#5");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next->next->prev == node1, "#6");
+
+	free_stack(stackA);
 }
 
 int test_stack(void)
@@ -179,9 +182,8 @@ int test_stack(void)
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_stack_0);
 	RUN_TEST(test_ft_stack_append_0);
-	RUN_TEST(test_ft_stack_prepend_0);
-	RUN_TEST(test_ft_stack_del_top_0);
-	RUN_TEST(test_ft_stack_swap_top_0);
+	RUN_TEST(test_ft_stack_push_0);
+	RUN_TEST(test_ft_stack_swap_0);
 	RUN_TEST(test_ft_stack_rotate_0);
 	RUN_TEST(test_ft_stack_reverse_rotate_0);
 	return UNITY_END();

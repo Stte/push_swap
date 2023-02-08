@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/07 18:18:45 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/08 18:21:18 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,12 @@ t_stack	*ft_stack(int content);
  */
 void	ft_stack_append(t_stack *head, t_stack *node);
 /**
- * @brief Add node to the start of the list
+ * @brief Push the first element between the stacks
  *
- * @param head
- * @param node
- * @return t_stack*
+ * @param dest
+ * @param source
  */
-t_stack	*ft_stack_prepend(t_stack *head, t_stack *node);
-/**
- * @brief Remove the first node
- *
- * @param head
- * @return t_stack*
- */
-t_stack	*ft_stack_del_top(t_stack *head);
+void	ft_stack_push(t_stack **dest, t_stack **source);
 /**
  * @brief Swap the first 2 nodes at the top of the stack.
  *
@@ -63,7 +55,7 @@ t_stack	*ft_stack_del_top(t_stack *head);
  * @param head Head of the stack
  * @return t_stack* New head of the stack
  */
-t_stack	*ft_stack_swap_top(t_stack *head);
+t_stack	*ft_stack_swap(t_stack *head);
 /**
  * @brief Shift up all nodes of stack by 1.
  *
