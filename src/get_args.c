@@ -6,24 +6,24 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:36:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/01/24 13:17:27 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/08 19:31:07 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static void	free_split(char **split)
+static void	free_split(char ***split)
 {
 	char	**indirect;
 
-	indirect = split;
+	indirect = *split;
 	while (*indirect)
 	{
 		free(*indirect);
 		indirect++;
 	}
-	free(split);
+	free(*split);
 }
 
 static size_t	get_position(int *args, size_t args_len, int arg)
@@ -101,7 +101,7 @@ int	get_args(t_vec *stack_a, int argc, char *argv[])
 			return (-1);
 		if (args_to_vec(args_str, &args_vec) < 0)
 			return (-1);
-		free_split(args_str);
+		free_split(&args_str);
 		args_str = NULL;
 		i++;
 	}
