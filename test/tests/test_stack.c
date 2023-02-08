@@ -161,7 +161,7 @@ void test_ft_stack_push_2(void)
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next == node1, "#19");
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->prev == node3, "#20");
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next->next == NULL, "#21");
-	TEST_ASSERT_TRUE_MESSAGE(stackB->next->prev->prev == node2, "#22");
+	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next->prev == node2, "#22");
 	ft_stack_push(&stackB, &stackA);
 	// NULL
 	// NULL <- node3 <-> node2 <-> node1 -> NULL
@@ -172,7 +172,7 @@ void test_ft_stack_push_2(void)
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next == node1, "#27");
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->prev == node3, "#28");
 	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next->next == NULL, "#29");
-	TEST_ASSERT_TRUE_MESSAGE(stackB->next->prev->prev == node2, "#30");
+	TEST_ASSERT_TRUE_MESSAGE(stackB->next->next->prev == node2, "#30");
 
 	free_stack(stackB);
 }
