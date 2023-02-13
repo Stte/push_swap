@@ -349,6 +349,27 @@ void test_ft_stack_reverse_rotate_2(void)
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == NULL, "#3");
 }
 
+void test_ft_stack_len_0(void)
+{
+	t_stack	*stackA;
+	t_stack	*node1;
+	t_stack	*node2;
+	t_stack	*node3;
+
+	node1 = ft_stack(1);
+	node2 = ft_stack(2);
+	node3 = ft_stack(3);
+	stackA = NULL;
+
+	TEST_ASSERT_TRUE_MESSAGE(ft_stack_len(stackA) == 0, "#1");
+	ft_stack_append(&stackA, &node1);
+	TEST_ASSERT_TRUE_MESSAGE(ft_stack_len(stackA) == 1, "#2");
+	ft_stack_append(&stackA, &node2);
+	TEST_ASSERT_TRUE_MESSAGE(ft_stack_len(stackA) == 2, "#3");
+	ft_stack_append(&stackA, &node3);
+	TEST_ASSERT_TRUE_MESSAGE(ft_stack_len(stackA) == 3, "#4");
+}
+
 int test_stack(void)
 {
 	UNITY_BEGIN();
@@ -367,5 +388,6 @@ int test_stack(void)
 	RUN_TEST(test_ft_stack_reverse_rotate_0);
 	RUN_TEST(test_ft_stack_reverse_rotate_1);
 	RUN_TEST(test_ft_stack_reverse_rotate_2);
+	RUN_TEST(test_ft_stack_len_0);
 	return UNITY_END();
 }
