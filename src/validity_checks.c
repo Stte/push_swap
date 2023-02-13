@@ -6,26 +6,22 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:04:46 by tspoof            #+#    #+#             */
-/*   Updated: 2023/01/23 16:55:32 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/09 17:13:46 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 
-int	is_unique_num(t_vec *vec, int num)
+int	is_unique_num(t_stack *stack, int num)
 {
-	size_t	i;
-	int		*ptr;
-
-	if (!vec)
-		return (-1);
-	ptr = (int *)vec->memory;
-	i = 0;
-	while (i < vec->len)
+	if (!stack)
+		return (1);
+	while (stack->next != NULL)
 	{
-		if (num == ptr[i])
+		if (stack->content == num)
 			return (0);
-		i++;
+		stack = stack->next;
 	}
 	return (1);
 }

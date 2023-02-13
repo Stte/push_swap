@@ -39,17 +39,34 @@ void test_ft_stack_append_0(void)
 	node3 = ft_stack(3);
 
 	// NULL <- node1 <-> node2 -> NULL
-	ft_stack_append(node1, node2);
+	ft_stack_append(&node1, &node2);
 	TEST_ASSERT_TRUE_MESSAGE(node1->next == node2, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(node1->next->next == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(node1->next->prev == node1, "#3");
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
-	ft_stack_append(node1, node3);
+	ft_stack_append(&node1, &node3);
 	TEST_ASSERT_TRUE_MESSAGE(node1->next == node2, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(node1->next->next == node3, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(node1->next->next->prev == node2, "#3");
 
 	free_stack(node1);
+}
+
+void test_ft_stack_append_1(void)
+{
+	t_stack	*stackA;
+	t_stack	*node1;
+
+	node1 = ft_stack(1);
+	stackA = NULL;
+
+	// NULL <- node1 -> NULL
+	ft_stack_append(&stackA, &node1);
+	TEST_ASSERT_TRUE_MESSAGE(stackA->next == NULL, "#1");
+	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
+	TEST_ASSERT_TRUE_MESSAGE(stackA == node1, "#3");
+
+	free_stack(stackA);
 }
 
 void test_ft_stack_push_0(void)
@@ -66,8 +83,8 @@ void test_ft_stack_push_0(void)
 	stackA = node1;
 	stackB = NULL;
 
-	ft_stack_append(stackA, node2);
-	ft_stack_append(stackA, node3);
+	ft_stack_append(&stackA, &node2);
+	ft_stack_append(&stackA, &node3);
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
 	// NULL
 
@@ -124,8 +141,8 @@ void test_ft_stack_push_2(void)
 	stackA = node1;
 	stackB = NULL;
 
-	ft_stack_append(stackA, node2);
-	ft_stack_append(stackA, node3);
+	ft_stack_append(&stackA, &node2);
+	ft_stack_append(&stackA, &node3);
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
 	// NULL
 
@@ -189,11 +206,11 @@ void test_ft_stack_swap_0(void)
 	node3 = ft_stack(3);
 	stackA = node1;
 
-	ft_stack_append(stackA, node2);
-	ft_stack_append(stackA, node3);
+	ft_stack_append(&stackA, &node2);
+	ft_stack_append(&stackA, &node3);
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	stackA = ft_stack_swap(stackA);
+	ft_stack_swap(&stackA);
 	// NULL <- node2 <-> node1 <-> node3 -> NULL
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node1, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
@@ -213,7 +230,7 @@ void test_ft_stack_swap_1(void)
 	node1 = ft_stack(1);
 	stackA = node1;
 
-	stackA = ft_stack_swap(stackA);
+	ft_stack_swap(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == node1, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#3");
@@ -227,10 +244,8 @@ void test_ft_stack_swap_2(void)
 
 	stackA = NULL;
 
-	stackA = ft_stack_swap(stackA);
+	ft_stack_swap(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == NULL, "#1");
-
-	free_stack(stackA);
 }
 
 void test_ft_stack_rotate_0(void)
@@ -245,11 +260,11 @@ void test_ft_stack_rotate_0(void)
 	node3 = ft_stack(3);
 	stackA = node1;
 
-	ft_stack_append(stackA, node2);
-	ft_stack_append(stackA, node3);
+	ft_stack_append(&stackA, &node2);
+	ft_stack_append(&stackA, &node3);
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	stackA = ft_stack_rotate(stackA);
+	ft_stack_rotate(&stackA);
 	// NULL <- node2 <-> node3 <-> node1 -> NULL
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node3, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
@@ -266,7 +281,7 @@ void test_ft_stack_rotate_1(void)
 	t_stack *stackA;
 
 	stackA = NULL;
-	stackA = ft_stack_rotate(stackA);
+	ft_stack_rotate(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == NULL, "#1");
 }
 
@@ -277,7 +292,7 @@ void test_ft_stack_rotate_2(void)
 
 	node1 = ft_stack(1);
 	stackA = node1;
-	stackA = ft_stack_rotate(stackA);
+	ft_stack_rotate(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == node1, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == NULL, "#3");
@@ -295,11 +310,11 @@ void test_ft_stack_reverse_rotate_0(void)
 	node3 = ft_stack(3);
 	stackA = node1;
 
-	ft_stack_append(stackA, node2);
-	ft_stack_append(stackA, node3);
+	ft_stack_append(&stackA, &node2);
+	ft_stack_append(&stackA, &node3);
 	// NULL <- node1 <-> node2 <-> node3 -> NULL
 
-	stackA = ft_stack_reverse_rotate(stackA);
+	ft_stack_reverse_rotate(&stackA);
 	// NULL <- node3 <-> node1 <-> node2 -> NULL
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == node1, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
@@ -316,7 +331,7 @@ void test_ft_stack_reverse_rotate_1(void)
 	t_stack *stackA;
 
 	stackA = NULL;
-	stackA = ft_stack_reverse_rotate(stackA);
+	ft_stack_reverse_rotate(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == NULL, "#1");
 }
 
@@ -327,7 +342,7 @@ void test_ft_stack_reverse_rotate_2(void)
 
 	node1 = ft_stack(1);
 	stackA = node1;
-	stackA = ft_stack_reverse_rotate(stackA);
+	ft_stack_reverse_rotate(&stackA);
 	TEST_ASSERT_TRUE_MESSAGE(stackA == node1, "#1");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->prev == NULL, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(stackA->next == NULL, "#3");
@@ -338,6 +353,7 @@ int test_stack(void)
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_stack_0);
 	RUN_TEST(test_ft_stack_append_0);
+	RUN_TEST(test_ft_stack_append_1);
 	RUN_TEST(test_ft_stack_push_0);
 	RUN_TEST(test_ft_stack_push_1);
 	RUN_TEST(test_ft_stack_push_2);
