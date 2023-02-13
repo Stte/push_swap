@@ -1,11 +1,11 @@
 T = ./tests/
 
 FLAGS = -Wall -Werror -Wextra -g
-INCLUDES = -I../inc -I../libft/inc -I./unity
+INCLUDES = -I../inc -I../libft/inc -I./unity -I.
 # SANITIZE = -fsanitize=address
 TEST = ./unity/unity.c ./test.c
 TESTS = \
-$T/test_validity_checks.c	$T/test_get_args.c	$T/test_stack.c
+$T/test_validity_checks.c	$T/test_get_args.c	$T/test_stack.c	$T/test_push_swap_three.c
 PUSH_SWAP =
 PS := $(filter-out %push_swap.c, $(PUSH_SWAP))
 
