@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:23 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/13 11:50:19 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/13 13:43:39 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_stack	*ft_stack(int content)
 	if (!stack)
 		return (NULL);
 	stack->content = content;
+	stack->pos = 0;
 	stack->next = NULL;
 	stack->prev = NULL;
 	return (stack);

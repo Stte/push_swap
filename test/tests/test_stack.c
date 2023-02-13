@@ -24,6 +24,7 @@ void test_ft_stack_0(void)
 	TEST_ASSERT_TRUE_MESSAGE(node1->content == 42, "#2");
 	TEST_ASSERT_TRUE_MESSAGE(node1->next == NULL, "#3");
 	TEST_ASSERT_TRUE_MESSAGE(node1->prev == NULL, "#4");
+	TEST_ASSERT_TRUE_MESSAGE(node1->pos == 0, "#5");
 
 	free_stack(node1);
 }

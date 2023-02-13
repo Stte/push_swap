@@ -6,18 +6,21 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/13 11:41:48 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/13 13:41:17 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <limits.h>
 # include "libft.h"
+
 
 typedef struct s_stack
 {
 	int				content;
+	int				pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
