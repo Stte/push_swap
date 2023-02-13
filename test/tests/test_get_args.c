@@ -28,17 +28,20 @@ void test_get_args_0(void)
 	int		expected[] = {3, 2, 0, 1, 4};
 	int		actual[5];
 	int		i;
+	t_stack	*head;
 
 
 	TEST_ASSERT_EQUAL_INT_MESSAGE(1, get_args(&stack, 6, argv), "#1");
+	head = stack;
 	i = 0;
-	while (stack->next != NULL)
+	while (stack != NULL)
 	{
-		actual[i] = stack->content;
+		actual[i] = stack->pos;
 		stack = stack->next;
+		i++;
 	}
 	TEST_ASSERT_EQUAL_MEMORY(expected, actual, 5*4);
-	args_free_stack(stack);
+	args_free_stack(head);
 }
 
 int test_get_args(void)
