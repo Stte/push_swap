@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 20:36:26 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/13 16:50:05 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/13 17:00:58 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	position(t_stack *node, t_stack *stack)
 	unsigned int	position;
 
 	position = 0;
-	while (stack->next != NULL)
+	while (stack != NULL)
 	{
 		if (node->content > stack->content)
 			position++;
