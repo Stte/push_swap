@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/13 19:18:40 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/14 21:13:28 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <limits.h>
 # include "libft.h"
-
 
 typedef struct s_stack
 {
@@ -28,7 +27,8 @@ typedef struct s_stack
 int		get_args(t_stack **stack_a, int argc, char *argv[]);
 int		is_unique_num(t_stack *vec, int num);
 int		is_valid_num(char *str);
-void	push_swap_three(t_stack **stack_a);
+int		command_to_list(t_list *operations, char *command);
+void	push_swap_three(t_stack **stack_a, t_vec *operations);
 void	push_swap_five(t_stack **stack_a, t_stack **stack_b);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
 
