@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:53:37 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/15 20:27:05 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/15 20:39:15 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	push_swap_three(t_stack **stack_a)
 	if (!is_largest(next_after->pos, (*stack_a)->pos, next->pos))
 	{
 		if (is_largest((*stack_a)->pos, next->pos, next_after->pos))
-			do_stack(ft_stack_rotate, stack_a, "ra");
+			do_psr(ft_stack_rotate, stack_a, "ra");
 		else
-			do_stack(ft_stack_reverse_rotate, stack_a, "rra");
+			do_psr(ft_stack_reverse_rotate, stack_a, "rra");
 	}
 	next = (*stack_a)->next;
 	next_after = (*stack_a)->next->next;
 	if (!is_smallest((*stack_a)->pos, next->pos, next_after->pos))
-		do_stack(ft_stack_swap, stack_a, "sa");
+		do_psr(ft_stack_swap, stack_a, "sa");
 }
