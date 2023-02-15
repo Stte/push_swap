@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/14 21:13:28 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/15 19:58:43 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ typedef struct s_stack
 int		get_args(t_stack **stack_a, int argc, char *argv[]);
 int		is_unique_num(t_stack *vec, int num);
 int		is_valid_num(char *str);
-int		command_to_list(t_list *operations, char *command);
-void	push_swap_three(t_stack **stack_a, t_vec *operations);
+void	push_swap_three(t_stack **stack_a);
 void	push_swap_five(t_stack **stack_a, t_stack **stack_b);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
+void	do_stack(void (*f)(t_stack **), t_stack **stack, char *command);
+void	do_both_stacks(void (*f)(t_stack *), t_stack *stack_a,
+			t_stack *stack_b, char *command);
 
 /**
  * @brief Create a doubly linked node
@@ -85,5 +87,6 @@ void	ft_stack_reverse_rotate(t_stack **head);
  * @return size_t
  */
 size_t	ft_stack_len(t_stack *head);
+void	ft_stack_free(t_stack *head);
 
 #endif

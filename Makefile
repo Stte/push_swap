@@ -14,9 +14,10 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/push_swap.c			$S/get_args.c			$S/validity_checks.c	\
-$S/ft_stack.c			$S/ft_stack_rotates.c	$S/ft_stack_swap.c		\
-$S/ft_stack_push.c		$S/push_swap_algorithms.c
+$S/push_swap.c			$S/get_args.c			$S/validity_checks.c			\
+$S/ft_stack.c			$S/ft_stack_rotates.c	$S/ft_stack_swap.c				\
+$S/ft_stack_push.c		$S/push_swap_algo.c		$S/push_swap_algo_three.c		\
+$S/push_swap_algo_five.c	$S/do_stack.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f

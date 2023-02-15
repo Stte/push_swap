@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_to_vec.c                                   :+:      :+:    :+:   */
+/*   push_swap_algo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 14:39:52 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/14 21:15:40 by tspoof           ###   ########.fr       */
+/*   Created: 2023/02/13 17:14:25 by tspoof            #+#    #+#             */
+/*   Updated: 2023/02/15 19:59:45 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	command_to_list(t_list *operations, char *command)
+void	push_swap(t_stack **stack_a, t_stack **stack_b)
 {
-	t_list	node;
-
-	// node = ft_lstnew(command);
-	return (1);
+	(void) stack_a;
+	(void) stack_b;
 }
