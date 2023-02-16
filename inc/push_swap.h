@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/15 20:42:28 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/16 14:43:38 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b);
 void	do_psr(void (*f)(t_stack **), t_stack **stack, char *command);
 void	do_psr_both_stacks(void (*f)(t_stack *), t_stack *stack_a,
 			t_stack *stack_b, char *command);
-void	do_swap(void (*f)(t_stack **, t_stack **), t_stack **dest,
+void	do_push(void (*f)(t_stack **, t_stack **), t_stack **dest,
 			t_stack **source, char *command);
 
 /**

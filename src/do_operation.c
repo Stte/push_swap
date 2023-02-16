@@ -6,13 +6,13 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:57:28 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/15 20:42:44 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/16 14:43:28 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_swap(void (*f)(t_stack **, t_stack **), t_stack **dest,
+void	do_push(void (*f)(t_stack **, t_stack **), t_stack **dest,
 		t_stack **source, char *command)
 {
 	f(dest, source);
