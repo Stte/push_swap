@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/16 14:43:38 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/16 17:38:23 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void	ft_stack_reverse_rotate(t_stack **head);
  */
 size_t	ft_stack_len(t_stack *head);
 void	ft_stack_free(t_stack *head);
+int		ft_stack_is_shorted(t_stack *stack);
 
 #endif
