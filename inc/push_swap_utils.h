@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_algo.c                                   :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:14:25 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/15 19:59:45 by tspoof           ###   ########.fr       */
+/*   Created: 2023/02/17 15:07:51 by tspoof            #+#    #+#             */
+/*   Updated: 2023/02/17 15:10:59 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_UTILS_H
+# define PUSH_SWAP_UTILS_H
 
-void	push_swap(t_stack **stack_a, t_stack **stack_b)
-{
-	(void) stack_a;
-	(void) stack_b;
-}
+# include "push_swap.h"
+
+int				is_smallest(unsigned int pos, t_stack *stack);
+unsigned int	smallest_pos(t_stack *stack);
+int				top_closer(unsigned int pos, t_stack *stack_a);
+
+#endif

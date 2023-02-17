@@ -1,67 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_algo_five.c                              :+:      :+:    :+:   */
+/*   push_swap_five.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:53:33 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/16 18:27:14 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/17 16:26:27 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "push_swap_utils.c"
 
-static int	is_smallest(unsigned int pos, t_stack *stack)
-{
-	while (stack != NULL)
-	{
-		if (pos > stack->pos)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-static unsigned int	smallest_pos(t_stack *stack)
-{
-	unsigned int	min;
-
-	min = 0;
-	while (stack != NULL)
-	{
-		if (stack->pos < min)
-			min = stack->pos;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-// Get the rotate direction.
-// If distance to top is less than distance to bottom returns 1 else 0.
-static int	top_closer(unsigned int pos, t_stack *stack_a)
-{
-	unsigned int	top;
-	unsigned int	bottom;
-
-	bottom = 0;
-	while (stack_a != NULL)
-	{
-		if (stack_a->pos == pos)
-		{
-			top = bottom;
-			bottom = 0;
-		}
-		bottom++;
-		stack_a = stack_a->next;
-	}
-	bottom++;
-	if (top < bottom)
-		return (1);
-	return (0);
-}
-
-// 2 3 5 1 4 -> 1 5 3 2 4 -> 5 3 2 4 ->
 void	push_swap_five(t_stack **stack_a, t_stack **stack_b)
 {
 	while (1)
