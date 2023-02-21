@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/17 16:25:58 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/21 14:33:30 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	do_psr_both_stacks(void (*f)(t_stack *), t_stack *stack_a,
 			t_stack *stack_b, char *command);
 void	do_push(void (*f)(t_stack **, t_stack **), t_stack **dest,
 			t_stack **source, char *command);
+int				is_smallest(unsigned int pos, t_stack *stack);
+unsigned int	smallest_pos(t_stack *stack);
+int				top_closer(unsigned int pos, t_stack *stack_a);
 
 /**
  * @brief Create a doubly linked node

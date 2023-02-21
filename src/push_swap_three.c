@@ -6,12 +6,11 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:53:37 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/17 16:26:29 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/21 14:34:32 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "push_swap_utils.c"
 
 static int	is_largest(int value, int val2, int val3)
 {
