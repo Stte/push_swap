@@ -25,7 +25,7 @@ void test_get_args_0(void)
 	argv[3] = "-3";
 	argv[4] = "0";
 	argv[5] = "100";
-	int		expected[] = {3, 2, 0, 1, 4};
+	int		expected[] = {4, 3, 1, 2, 5};
 	int		actual[5];
 	int		i;
 	t_stack	*head;
