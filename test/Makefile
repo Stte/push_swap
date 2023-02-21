@@ -7,7 +7,7 @@ TEST = ./unity/unity.c ./test.c
 TESTS = \
 $T/test_validity_checks.c	$T/test_get_args.c	$T/test_stack.c
 PUSH_SWAP =
-PS := $(filter-out %push_swap.c, $(PUSH_SWAP))
+PS := $(filter-out %main.c, $(PUSH_SWAP))
 
 all: clean run_test
 
