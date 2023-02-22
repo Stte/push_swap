@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/21 14:33:30 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:54:16 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <limits.h>
 # include "libft.h"
+
+typedef unsigned int uint;
 
 typedef struct s_stack
 {
@@ -94,5 +96,6 @@ void	ft_stack_reverse_rotate(t_stack **head);
 size_t	ft_stack_len(t_stack *head);
 void	ft_stack_free(t_stack *head);
 int		ft_stack_is_shorted(t_stack *stack);
+int		ft_stack_is_rev_shorted(t_stack *stack);
 
 #endif

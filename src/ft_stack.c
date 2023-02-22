@@ -6,23 +6,12 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 14:21:23 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/16 17:38:02 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:44:43 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
-
-int		ft_stack_is_shorted(t_stack *stack)
-{
-	while (stack->next != NULL)
-	{
-		if (stack->pos > stack->next->pos)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
 
 void	ft_stack_free(t_stack *head)
 {

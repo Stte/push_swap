@@ -6,62 +6,83 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 12:50:52 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/21 18:34:00 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/22 15:55:51 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Loop thorough the stack_a, check the bit position and if it's 0 move it to stack_b
-// Then move all the nodes thats next bit position is 1 back to stack_a
-
-
-void	push_swap(t_stack **stack_a, t_stack **stack_b)
+static void	stack_a_handler(t_stack **stack_a, t_stack **stack_b, uint bit_pos)
 {
-	t_stack			*indirect;
-	unsigned int	i;
-	unsigned int	bit_pos;
-	unsigned int	stack_len;
+	t_stack	*indirect;
+	uint	stack_len;
 
-
-	bit_pos = 1;
-	while (bit_pos)
+	indirect = *stack_a;
+	stack_len = ft_stack_len(*stack_a);
+	while (stack_len > 0)
 	{
-		// check stack_a and push to stack_b
-		indirect = *stack_a;
-		i = 0;
-		stack_len = ft_stack_len(*stack_a);
-		while (i < stack_len)
+		if (indirect->pos & bit_pos)
 		{
-			if (indirect->pos & bit_pos)
-			{
-				indirect = indirect->next;
-				do_psr(ft_stack_rotate, stack_a, "ra");
-			}
-			else
-			{
-				indirect = indirect->next;
-				do_push(ft_stack_push, stack_b, stack_a, "pb");
-			}
-			i++;
-			// indirect = indirect->next;
+			indirect = indirect->next;
+			do_psr(ft_stack_rotate, stack_a, "ra");
 		}
-		bit_pos = bit_pos << 1;
-		// check stack_b and push to stack_a
-		indirect = *stack_b;
-		while (indirect)
+		else
+		{
+			indirect = indirect->next;
+			do_push(ft_stack_push, stack_b, stack_a, "pb");
+		}
+		stack_len--;
+	}
+}
+
+// Loop thorough the stack_b, check the bit position and if it's 1 move it to stack_a
+static void	stack_b_handler(t_stack **stack_a, t_stack **stack_b, uint bit_pos)
+{
+	t_stack	*indirect;
+	uint	stack_len;
+
+	indirect = *stack_b;
+	stack_len = ft_stack_len(*stack_b);
+	while (stack_len > 0)
+	{
+		// indirect = indirect->next;
+		// do_push(ft_stack_push, stack_a, stack_b, "pa");
+		if (indirect->pos & bit_pos)
 		{
 			indirect = indirect->next;
 			do_push(ft_stack_push, stack_a, stack_b, "pa");
-			// if (bit_pos && indirect->pos & bit_pos)
-			// {
-			// 	indirect = indirect->next;
-			// 	do_push(ft_stack_push, stack_a, stack_b, "pa");
-			// }
-			// else
-			// 	indirect = indirect->next;
 		}
-		if (ft_stack_is_shorted(*stack_a) && ft_stack_len(*stack_b) == 0)
-			break ;
+		else
+		{
+			indirect = indirect->next;
+			do_psr(ft_stack_rotate, stack_b, "rb");
+		}
+		stack_len--;
 	}
 }
+
+void	push_swap(t_stack **stack_a, t_stack **stack_b)
+{
+	uint	bit_pos;
+
+	bit_pos = 1;
+	while (!ft_stack_is_shorted(*stack_a) && !ft_stack_is_rev_shorted(*stack_a))
+	{
+		stack_a_handler(stack_a, stack_b, bit_pos);
+		bit_pos <<= 1;
+		stack_b_handler(stack_a, stack_b, bit_pos);
+	}
+	while (ft_stack_len(*stack_b))
+	{
+		do_push(ft_stack_push, stack_a, stack_b, "pa");
+	}
+}
+
+
+// 0001
+// 0010
+// 0011
+// 0100
+// 0101
+// 0110
