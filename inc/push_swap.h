@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:27:34 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/22 15:54:16 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/23 18:57:37 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <limits.h>
 # include "libft.h"
 
-typedef unsigned int uint;
-
+typedef unsigned int	t_uint;
 typedef struct s_stack
 {
 	int				content;
@@ -28,7 +27,7 @@ typedef struct s_stack
 
 int		get_args(t_stack **stack_a, int argc, char *argv[]);
 int		is_unique_num(t_stack *vec, int num);
-int		is_valid_num(char *str);
+int		is_valid_num(int num, char *str);
 void	push_swap_three(t_stack **stack_a);
 void	push_swap_five(t_stack **stack_a, t_stack **stack_b);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
@@ -37,9 +36,9 @@ void	do_psr_both_stacks(void (*f)(t_stack *), t_stack *stack_a,
 			t_stack *stack_b, char *command);
 void	do_push(void (*f)(t_stack **, t_stack **), t_stack **dest,
 			t_stack **source, char *command);
-int				is_smallest(unsigned int pos, t_stack *stack);
-unsigned int	smallest_pos(t_stack *stack);
-int				top_closer(unsigned int pos, t_stack *stack_a);
+int		is_smallest(t_uint pos, t_stack *stack);
+t_uint	smallest_pos(t_stack *stack);
+int		top_closer(t_uint pos, t_stack *stack_a);
 
 /**
  * @brief Create a doubly linked node

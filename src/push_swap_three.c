@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:53:37 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/21 14:34:32 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/23 19:11:17 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static int	is_largest(int value, int val2, int val3)
 	return (0);
 }
 
-// 3 2 1 -ra-> 2 1 3 -sa-> 1 2 3
-// 3 1 2 -ra-> 1 2 3
-// 2 3 1 -rra-> 1 2 3
-// 1 3 2 -rra-> 2 1 3 -sa-> 1 2 3
-// 2 1 3 -sa-> 1 2 3
 void	push_swap_three(t_stack **stack_a)
 {
 	t_stack	*next;

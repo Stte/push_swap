@@ -6,7 +6,7 @@
 /*   By: tspoof <tspoof@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 18:20:02 by tspoof            #+#    #+#             */
-/*   Updated: 2023/02/09 14:23:58 by tspoof           ###   ########.fr       */
+/*   Updated: 2023/02/23 18:51:40 by tspoof           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_stack_rotate(t_stack **head)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!head || !*head || !(*head)->next)
 		return ;

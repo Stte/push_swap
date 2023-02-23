@@ -14,11 +14,11 @@ AR			= ar
 ARFLAGS		= rcs
 
 SRC = \
-$S/main.c				$S/get_args.c			$S/validity_checks.c			\
-$S/ft_stack.c			$S/ft_stack_rotates.c	$S/ft_stack_swap.c				\
-$S/ft_stack_push.c		$S/push_swap.c			$S/push_swap_three.c			\
-$S/push_swap_five.c		$S/do_operation.c		$S/push_swap_utils.c			\
-$S/ft_stack_short.c
+$S/main.c				$S/get_args.c			$S/validity_checks.c		\
+$S/ft_stack.c			$S/ft_stack_rotates.c	$S/ft_stack_swap.c			\
+$S/ft_stack_push.c		$S/push_swap.c			$S/push_swap_three.c		\
+$S/push_swap_five.c		$S/do_operation.c		$S/push_swap_utils.c		\
+$S/ft_stack_shorted.c
 OBJ			= $(SRC:$S%=$O%.o)
 
 RM			= /bin/rm -f
@@ -34,11 +34,6 @@ all: $(NAME)
 
 $O:
 	@mkdir $@
-
-# $(OBJ): | $O
-
-# $(OBJ): $O%.o: $S%
-# 	$(CC) $(CFLAGS) $< -o $@
 
 $(NAME): $(SRC)
 $(NAME): $(LIBFT)
