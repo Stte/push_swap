@@ -1,5 +1,7 @@
 # push_swap
 
+https://user-images.githubusercontent.com/17783118/225594577-dd74b659-a922-4aad-b04a-663706727691.mov
+
 - Sort data from lowest to highest
 - Use only allowed operations
 - Two stacks
@@ -39,6 +41,3 @@ To do so you have the following operations at your disposal:
 
 Allowed external functions:
 read, write, malloc, free, exit
-
-
-https://user-images.githubusercontent.com/17783118/225594577-dd74b659-a922-4aad-b04a-663706727691.mov
