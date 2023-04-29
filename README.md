@@ -43,3 +43,15 @@ To do so you have the following operations at your disposal:
 
 Allowed external functions:
 read, write, malloc, free, exit
+
+---
+
+To run the program you have to
+```
+git clone
+git submodule update --init
+```
+and then
+```
+make && ./push_swap 1 3 2
+```
